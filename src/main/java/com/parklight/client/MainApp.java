@@ -7,7 +7,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 /**
- * JavaFX entry point. Loads the dashboard screen from FXML.
+ * JavaFX entry point. Loads the map screen from FXML.
  */
 public class MainApp extends Application {
 
