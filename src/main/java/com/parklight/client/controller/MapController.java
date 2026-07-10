@@ -142,8 +142,8 @@ public class MapController {
 
     // A parking spot drawn as a rounded lot with an id + type label.
     private void drawSpot(GraphInfo.Node n) {
-        double w = 96;
-        double h = 54;
+        double w = 72;
+        double h = 40;
         Rectangle lot = new Rectangle(n.getX() - w / 2, n.getY() - h / 2, w, h);
         lot.setArcWidth(12);
         lot.setArcHeight(12);
@@ -152,17 +152,28 @@ public class MapController {
         lot.setFill(n.isOccupied() ? Color.web("#e06666") : Color.web("#93c47d"));
         canvas.getChildren().add(lot);
 
-        Text label = new Text(n.getId() + "\n"
-                + (n.getType() == null ? "" : n.getType()) + "\n"
-                + (n.isOccupied() ? "OCCUPIED" : "FREE"));
+        Text label = new Text(n.getId() + " " + (n.getType() == null ? "" : shortType(n.getType()))
+                + "\n" + (n.isOccupied() ? "OCCUPIED" : "FREE"));
         label.setTextAlignment(TextAlignment.CENTER);
         label.setTextOrigin(VPos.CENTER);
-        label.setFont(Font.font("System", FontWeight.BOLD, 11));
+        label.setFont(Font.font("System", FontWeight.BOLD, 9));
         label.setFill(Color.web("#1b1b1b"));
-        // Center the text roughly in the lot.
-        label.setX(n.getX() - w / 2 + 8);
+        label.setX(n.getX() - w / 2 + 4);
         label.setY(n.getY());
         canvas.getChildren().add(label);
+    }
+
+    // Compact type label: R / E / D.
+    private String shortType(String type) {
+        if (type == null) {
+            return "";
+        }
+        switch (type) {
+            case "REGULAR":  return "R";
+            case "ELECTRIC": return "E";
+            case "DISABLED": return "D";
+            default:         return type;
+        }
     }
 
     // Entrance / aisle drawn as a small marker with a label.
