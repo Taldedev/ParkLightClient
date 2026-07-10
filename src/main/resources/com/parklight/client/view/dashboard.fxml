@@ -29,6 +29,8 @@
     <bottom>
         <HBox spacing="8.0" style="-fx-padding: 12;">
             <Button text="Refresh" onAction="#refresh"/>
+            <Button text="Park Vehicle" onAction="#goPark"/>
+            <Button text="Release Vehicle" onAction="#goRelease"/>
         </HBox>
     </bottom>
 </BorderPane>

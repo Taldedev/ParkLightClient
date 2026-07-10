@@ -1,5 +1,6 @@
 package com.parklight.client.controller;
 
+import com.parklight.client.Navigator;
 import com.parklight.client.model.ParkingSpot;
 import com.parklight.client.net.Request;
 import com.parklight.client.net.Response;
@@ -8,6 +9,7 @@ import com.parklight.client.net.Servers;
 
 import com.google.gson.reflect.TypeToken;
 
+import javafx.event.ActionEvent;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -68,6 +70,26 @@ public class DashboardController {
             statusLabel.setText("Loaded " + data.size() + " spots");
         } catch (Exception e) {
             statusLabel.setText("Parking server not reachable: " + e.getMessage());
+        }
+    }
+
+    @FXML
+    private void goPark(ActionEvent event) {
+        navigate(event, "/com/parklight/client/view/park.fxml");
+    }
+
+    @FXML
+    private void goRelease(ActionEvent event) {
+        navigate(event, "/com/parklight/client/view/release.fxml");
+    }
+
+    // Shared navigation helper. Shows the error in the status label if the
+    // target screen fails to load.
+    private void navigate(ActionEvent event, String fxmlPath) {
+        try {
+            Navigator.go((javafx.scene.Node) event.getSource(), fxmlPath);
+        } catch (Exception e) {
+            statusLabel.setText("Navigation failed: " + e.getMessage());
         }
     }
 }
