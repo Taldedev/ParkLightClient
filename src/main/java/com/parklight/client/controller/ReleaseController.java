@@ -163,7 +163,7 @@ public class ReleaseController {
     private void back(ActionEvent event) {
         try {
             Navigator.go((javafx.scene.Node) event.getSource(),
-                    "/com/parklight/client/view/dashboard.fxml");
+                    "/com/parklight/client/view/map.fxml");
         } catch (Exception e) {
             releaseLabel.setText("Navigation failed: " + e.getMessage());
         }

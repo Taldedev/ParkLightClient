@@ -9,7 +9,6 @@ import com.parklight.client.net.Servers;
 
 import com.google.gson.reflect.TypeToken;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.geometry.VPos;
 import javafx.scene.control.Label;
@@ -46,6 +45,7 @@ public class MapController {
 
     @FXML
     public void initialize() {
+        this.highlightPath = com.parklight.client.AppState.consumeLastPath();
         loadAndDraw();
     }
 
@@ -196,10 +196,19 @@ public class MapController {
     }
 
     @FXML
-    private void back(ActionEvent event) {
+    private void goPark(javafx.event.ActionEvent event) {
+        navigate(event, "/com/parklight/client/view/park.fxml");
+    }
+
+    @FXML
+    private void goRelease(javafx.event.ActionEvent event) {
+        navigate(event, "/com/parklight/client/view/release.fxml");
+    }
+
+    private void navigate(javafx.event.ActionEvent event, String fxmlPath) {
         try {
-            Navigator.go((javafx.scene.Node) event.getSource(),
-                    "/com/parklight/client/view/dashboard.fxml");
+            com.parklight.client.Navigator.go(
+                    (javafx.scene.Node) event.getSource(), fxmlPath);
         } catch (Exception e) {
             statusLabel.setText("Navigation failed: " + e.getMessage());
         }

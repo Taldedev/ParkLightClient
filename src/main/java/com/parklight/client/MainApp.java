@@ -14,7 +14,7 @@ public class MainApp extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         FXMLLoader loader = new FXMLLoader(
-                getClass().getResource("/com/parklight/client/view/dashboard.fxml"));
+                getClass().getResource("/com/parklight/client/view/map.fxml"));
         Parent root = loader.load();
 
         stage.setTitle("ParkLight");

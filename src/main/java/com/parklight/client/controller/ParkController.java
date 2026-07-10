@@ -73,6 +73,18 @@ public class ParkController {
             resultLabel.setText("Parked at spot " + ticket.getSpot().getId()
                     + "\nPath: " + path
                     + "\nTicket: " + ticket.getTicketId());
+            com.parklight.client.AppState.setLastPath(result.getPath());
+            // Briefly show the result, then go to the map with the route highlighted.
+            javafx.animation.PauseTransition pause =
+                    new javafx.animation.PauseTransition(javafx.util.Duration.seconds(1.2));
+            pause.setOnFinished(ev -> {
+                try {
+                    com.parklight.client.Navigator.go(plateField, "/com/parklight/client/view/map.fxml");
+                } catch (Exception e) {
+                    resultLabel.setText("Navigation failed: " + e.getMessage());
+                }
+            });
+            pause.play();
         } catch (Exception e) {
             resultLabel.setText("Parking server not reachable: " + e.getMessage());
         }
@@ -82,7 +94,7 @@ public class ParkController {
     private void back(ActionEvent event) {
         try {
             Navigator.go((javafx.scene.Node) event.getSource(),
-                    "/com/parklight/client/view/dashboard.fxml");
+                    "/com/parklight/client/view/map.fxml");
         } catch (Exception e) {
             resultLabel.setText("Navigation failed: " + e.getMessage());
         }
