@@ -17,7 +17,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.lang.reflect.Type;
 import java.util.List;
@@ -42,7 +41,8 @@ public class DashboardController {
 
     @FXML
     public void initialize() {
-        idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
+        idColumn.setCellValueFactory(cell ->
+                new SimpleStringProperty(cell.getValue().getId()));
         typeColumn.setCellValueFactory(cell ->
                 new SimpleStringProperty(cell.getValue().getType() == null
                         ? "" : cell.getValue().getType().name()));
