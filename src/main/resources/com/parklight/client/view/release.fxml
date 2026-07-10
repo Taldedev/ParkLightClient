@@ -2,7 +2,8 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Separator?>
@@ -16,10 +17,19 @@
                style="-fx-font-size: 20px; -fx-font-weight: bold; -fx-padding: 12;"/>
     </top>
     <center>
-        <VBox spacing="12.0" style="-fx-padding: 20;">
-            <Label text="Ticket id:"/>
-            <TextField fx:id="ticketField" promptText="paste the ticket id"/>
-            <Button text="Release" onAction="#release"/>
+        <VBox spacing="10.0" style="-fx-padding: 16;">
+            <Label text="Currently parked vehicles (select one):"/>
+            <TableView fx:id="activeTable" prefHeight="220">
+                <columns>
+                    <TableColumn fx:id="plateColumn" text="License Plate" prefWidth="180"/>
+                    <TableColumn fx:id="spotColumn" text="Spot" prefWidth="100"/>
+                    <TableColumn fx:id="ticketColumn" text="Ticket" prefWidth="320"/>
+                </columns>
+            </TableView>
+            <HBox spacing="8.0">
+                <Button text="Release Selected" onAction="#release"/>
+                <Button text="Refresh List" onAction="#loadActive"/>
+            </HBox>
             <Label fx:id="releaseLabel" style="-fx-font-weight: bold;"/>
             <Separator/>
             <Button text="Show Total Revenue" onAction="#showRevenue"/>
