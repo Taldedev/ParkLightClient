@@ -1,6 +1,7 @@
 package com.parklight.client.controller;
 
 import com.parklight.client.Navigator;
+import com.parklight.client.model.CashOut;
 import com.parklight.client.model.ParkingTicket;
 import com.parklight.client.net.Request;
 import com.parklight.client.net.Response;
@@ -121,6 +122,28 @@ public class ReleaseController {
                 return;
             }
             revenueLabel.setText("Total revenue: " + response.getBody());
+        } catch (Exception e) {
+            revenueLabel.setText("Billing server not reachable: " + e.getMessage());
+        }
+    }
+
+    @FXML
+    private void cashOut() {
+        try {
+            Request<Object> request = new Request<>("billing/cashout", null);
+            Type responseType = new TypeToken<Response<CashOut>>() {}.getType();
+            Response<CashOut> response = billing.send(request, responseType);
+
+            if (response == null || !response.isSuccess()) {
+                revenueLabel.setText(response == null
+                        ? "No response from server"
+                        : "Failed: " + response.getMessage());
+                return;
+            }
+            CashOut co = response.getBody();
+            revenueLabel.setText("Cashed out " + co.getAmount()
+                    + " (" + co.getTicketCount() + " tickets) at " + co.getDateTime()
+                    + "\nRegister reset to 0.");
         } catch (Exception e) {
             revenueLabel.setText("Billing server not reachable: " + e.getMessage());
         }

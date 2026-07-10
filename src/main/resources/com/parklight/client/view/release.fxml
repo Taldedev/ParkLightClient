@@ -32,7 +32,10 @@
             </HBox>
             <Label fx:id="releaseLabel" style="-fx-font-weight: bold;"/>
             <Separator/>
-            <Button text="Show Total Revenue" onAction="#showRevenue"/>
+            <HBox spacing="8.0">
+                <Button text="Show Total Revenue" onAction="#showRevenue"/>
+                <Button text="Cash Out" onAction="#cashOut"/>
+            </HBox>
             <Label fx:id="revenueLabel" style="-fx-font-weight: bold;"/>
         </VBox>
     </center>
