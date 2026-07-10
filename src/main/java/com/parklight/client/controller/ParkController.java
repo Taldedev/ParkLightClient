@@ -1,6 +1,7 @@
 package com.parklight.client.controller;
 
 import com.parklight.client.Navigator;
+import com.parklight.client.model.ParkResult;
 import com.parklight.client.model.ParkingTicket;
 import com.parklight.client.model.Vehicle;
 import com.parklight.client.model.VehicleType;
@@ -57,8 +58,8 @@ public class ParkController {
         try {
             Vehicle vehicle = new Vehicle(plate, type);
             Request<Vehicle> request = new Request<>("parking/park", vehicle);
-            Type responseType = new TypeToken<Response<ParkingTicket>>() {}.getType();
-            Response<ParkingTicket> response = client.send(request, responseType);
+            Type responseType = new TypeToken<Response<ParkResult>>() {}.getType();
+            Response<ParkResult> response = client.send(request, responseType);
 
             if (response == null || !response.isSuccess()) {
                 resultLabel.setText(response == null
@@ -66,9 +67,12 @@ public class ParkController {
                         : "Failed: " + response.getMessage());
                 return;
             }
-            ParkingTicket ticket = response.getBody();
+            ParkResult result = response.getBody();
+            ParkingTicket ticket = result.getTicket();
+            String path = result.getPath() == null ? "" : String.join(" -> ", result.getPath());
             resultLabel.setText("Parked at spot " + ticket.getSpot().getId()
-                    + " - ticket " + ticket.getTicketId());
+                    + "\nPath: " + path
+                    + "\nTicket: " + ticket.getTicketId());
         } catch (Exception e) {
             resultLabel.setText("Parking server not reachable: " + e.getMessage());
         }
