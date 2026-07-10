@@ -150,6 +150,16 @@ public class ReleaseController {
     }
 
     @FXML
+    private void goHistory(javafx.event.ActionEvent event) {
+        try {
+            com.parklight.client.Navigator.go((javafx.scene.Node) event.getSource(),
+                    "/com/parklight/client/view/cashout_history.fxml");
+        } catch (Exception e) {
+            revenueLabel.setText("Navigation failed: " + e.getMessage());
+        }
+    }
+
+    @FXML
     private void back(ActionEvent event) {
         try {
             Navigator.go((javafx.scene.Node) event.getSource(),

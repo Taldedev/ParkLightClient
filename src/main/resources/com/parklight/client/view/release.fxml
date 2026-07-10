@@ -35,6 +35,7 @@
             <HBox spacing="8.0">
                 <Button text="Show Total Revenue" onAction="#showRevenue"/>
                 <Button text="Cash Out" onAction="#cashOut"/>
+                <Button text="Cash Out History" onAction="#goHistory"/>
             </HBox>
             <Label fx:id="revenueLabel" style="-fx-font-weight: bold;"/>
         </VBox>
