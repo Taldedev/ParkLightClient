@@ -31,6 +31,7 @@
             <Button text="Refresh" onAction="#refresh"/>
             <Button text="Park Vehicle" onAction="#goPark"/>
             <Button text="Release Vehicle" onAction="#goRelease"/>
+            <Button text="Map" onAction="#goMap"/>
         </HBox>
     </bottom>
 </BorderPane>

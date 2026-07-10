@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.parklight.client.controller.MapController">
+    <top>
+        <VBox spacing="4.0" style="-fx-padding: 12;">
+            <Label text="Parking Lot Map"
+                   style="-fx-font-size: 20px; -fx-font-weight: bold;"/>
+            <Label fx:id="statusLabel" text="Loading..."/>
+            <Label text="Green = free   Red = occupied   Blue = entrance   Orange = chosen route"
+                   style="-fx-text-fill: #666666;"/>
+        </VBox>
+    </top>
+    <center>
+        <Pane fx:id="canvas" prefWidth="560" prefHeight="470"
+              style="-fx-background-color: #f4f4f4;"/>
+    </center>
+    <bottom>
+        <HBox spacing="8.0" style="-fx-padding: 12;">
+            <Button text="Reload" onAction="#loadAndDraw"/>
+            <Button text="Back" onAction="#back"/>
+        </HBox>
+    </bottom>
+</BorderPane>

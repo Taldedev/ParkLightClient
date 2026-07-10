@@ -83,6 +83,11 @@ public class DashboardController {
         navigate(event, "/com/parklight/client/view/release.fxml");
     }
 
+    @FXML
+    private void goMap(ActionEvent event) {
+        navigate(event, "/com/parklight/client/view/map.fxml");
+    }
+
     // Shared navigation helper. Shows the error in the status label if the
     // target screen fails to load.
     private void navigate(ActionEvent event, String fxmlPath) {
