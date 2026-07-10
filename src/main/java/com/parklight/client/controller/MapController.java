@@ -57,7 +57,14 @@ public class MapController {
         }
     }
 
+    // Button handler: reload the map and clear any highlighted route.
     @FXML
+    private void reload() {
+        highlightPath = null;
+        loadAndDraw();
+    }
+
+    // Loads the graph from the server and draws it (keeps highlightPath as-is).
     private void loadAndDraw() {
         try {
             Request<Object> request = new Request<>("parking/graph", null);
