@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+<VBox alignment="CENTER" spacing="18.0"
+      xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.parklight.client.controller.WelcomeController"
+      style="-fx-background-color: #12324B; -fx-padding: 40;">
+
+    <!-- Parking-sign icon: blue rounded square with a white P -->
+    <StackPane>
+        <Rectangle width="130" height="130" arcWidth="34" arcHeight="34"
+                   fill="#1C7293" stroke="#CADCFC" strokeWidth="3"/>
+        <Label text="P" style="-fx-text-fill: white; -fx-font-size: 84px; -fx-font-weight: bold;"/>
+    </StackPane>
+
+    <Label text="ParkLight"
+           style="-fx-text-fill: white; -fx-font-size: 40px; -fx-font-weight: bold;"/>
+
+    <Label text="מערכת חניון חכם - הקצאת מקום, חיוב וניהול קופה"
+           style="-fx-text-fill: #CADCFC; -fx-font-size: 15px;"/>
+
+    <Button text="כניסה" onAction="#enter"
+            style="-fx-font-size: 16px; -fx-padding: 8 34 8 34; -fx-background-color: #00A896; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 6;"/>
+
+    <Label fx:id="statusLabel" text="" style="-fx-text-fill: #E06666; -fx-font-size: 12px;"/>
+</VBox>
